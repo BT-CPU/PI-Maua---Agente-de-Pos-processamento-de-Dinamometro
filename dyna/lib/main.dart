@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart';
+import 'screens/app_shell.dart';
 import 'theme/app_colors.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class DynamometerApp extends StatelessWidget {
         colorSchemeSeed: AppColors.primary,
         scaffoldBackgroundColor: AppColors.background,
       ),
-      home: const HomeScreen(),
+      home: const AppShell(),
     );
   }
 }

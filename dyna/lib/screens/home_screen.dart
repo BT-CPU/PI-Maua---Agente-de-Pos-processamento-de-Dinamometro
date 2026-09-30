@@ -3,95 +3,18 @@ import 'package:flutter/material.dart';
 import '../data/mock_data.dart';
 import '../theme/app_colors.dart';
 import '../widgets/latest_tests_card.dart';
-import '../widgets/side_menu.dart';
 import '../widgets/summary_card.dart';
-import '../widgets/top_bar.dart';
 
-/// Home (dashboard) screen: summary of the tests.
-class HomeScreen extends StatefulWidget {
+/// Home (dashboard) page: summary of the tests.
+/// It only has the page content. The menu and the top bar are in AppShell.
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  // Index of the selected menu item (0 = Home).
-  int _selectedMenuIndex = 0;
-
-  // Lets us open/close the drawer (used on small screens).
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  // Screen width (in pixels) from which the side menu is always visible.
-  static const double _wideScreenWidth = 900;
 
   // Content width from which the 3 summary cards stay side by side.
   static const double _cardsRowWidth = 700;
 
-  void _onMenuItemSelected(int index) {
-    setState(() {
-      _selectedMenuIndex = index;
-    });
-
-    // If the menu is inside the drawer, close it after the tap.
-    if (_scaffoldKey.currentState?.isDrawerOpen ?? false) {
-      Navigator.of(context).pop();
-    }
-    // TODO: navigate to the other screens when they exist.
-  }
-
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final bool isWideScreen = constraints.maxWidth >= _wideScreenWidth;
-
-        final sideMenu = SideMenu(
-          selectedIndex: _selectedMenuIndex,
-          onItemSelected: _onMenuItemSelected,
-        );
-
-        // Wide screen: menu always visible on the left.
-        if (isWideScreen) {
-          return Scaffold(
-            body: Row(
-              children: [
-                sideMenu,
-                Expanded(child: _buildMainArea(showMenuButton: false)),
-              ],
-            ),
-          );
-        }
-
-        // Small screen: menu goes inside a drawer opened by the top bar button.
-        return Scaffold(
-          key: _scaffoldKey,
-          drawer: Drawer(
-            width: 220,
-            backgroundColor: AppColors.sidebar,
-            shape: const RoundedRectangleBorder(),
-            child: SafeArea(child: sideMenu),
-          ),
-          body: _buildMainArea(showMenuButton: true),
-        );
-      },
-    );
-  }
-
-  Widget _buildMainArea({required bool showMenuButton}) {
-    return Column(
-      children: [
-        TopBar(
-          onMenuPressed: showMenuButton
-              ? () => _scaffoldKey.currentState?.openDrawer()
-              : null,
-        ),
-        Expanded(child: _buildContent()),
-      ],
-    );
-  }
-
-  Widget _buildContent() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Column(
