@@ -5,6 +5,7 @@ import '../widgets/side_menu.dart';
 import '../widgets/top_bar.dart';
 import 'home_screen.dart';
 import 'import_screen.dart';
+import 'mapping_screen.dart';
 
 /// The "frame" of the app: side menu + top bar + the current screen.
 /// Every screen of the app is shown inside this shell, so the menu and the
@@ -32,6 +33,7 @@ class _AppShellState extends State<AppShell> {
     HomeScreen(),
     ImportScreen(),
     _ComingSoon(title: 'Tests'),
+    MappingScreen(),
     _ComingSoon(title: 'Charts'),
     _ComingSoon(title: 'Data Health'),
     _ComingSoon(title: 'Comparisons'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
 /// Small helper class to describe each menu entry.
 class _MenuEntry {
@@ -26,6 +26,7 @@ class SideMenu extends StatelessWidget {
     _MenuEntry(Icons.home_rounded, 'Home'),
     _MenuEntry(Icons.download_rounded, 'Import'),
     _MenuEntry(Icons.fact_check_outlined, 'Tests'),
+    _MenuEntry(Icons.table_chart_outlined, 'Mapping'),
     _MenuEntry(Icons.show_chart_rounded, 'Charts'),
     _MenuEntry(Icons.shield_outlined, 'Data Health'),
     _MenuEntry(Icons.compare_arrows_rounded, 'Comparisons'),
